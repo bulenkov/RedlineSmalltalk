@@ -1,0 +1,62 @@
+<idea-plugin version="2">
+  <name>Redline Smalltalk</name>
+  <description>Redline Smalltalk is a Smalltalk for the JVM</description>
+  <version>1.0.1</version>
+
+    <change-notes>
+        <![CDATA[
+    <p>1.0.1</p>
+    <ul>
+        <li>Generating test source root on module creation</li>
+    </ul>
+
+    <p>1.0</p>
+    <ul>
+        <li>Create a Redline Smalltalk project using IntelliJ wizard</li>
+        <li>Import a Redline Smalltalk project from an existing project</li>
+        <li>Adding Redline Smalltalk support to an existing module</li>
+        <li>Adding Redline Smalltalk module to an existing project</li>
+        <li>Creating a new Smalltalk file based on two templates: class and message</li>
+        <li>Create a Redline Smalltalk run configuration</li>
+        <li>Ability to compile and run Redline Smalltalk from IntelliJ</li>
+        <li>Run output console</li>
+        <li>New icons</li>
+        <li>Ability to download and install Redline Smalltalk from the Module Wizard</li>
+        <li>Simple code highlighting</li>
+    </ul>
+    ]]>
+    </change-notes>
+
+  <vendor email="kb@jetbrains.com" url="http://redline.st">Konstantin Bulenkov</vendor>
+
+  <idea-version since-build="129.239"/>
+
+  <application-components>
+  </application-components>
+
+  <project-components>
+  </project-components>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <sdkType implementation="st.redline.smalltalk.module.RsSdkType"/>
+        <moduleType id="REDLINE_MODULE" implementationClass="st.redline.smalltalk.module.RsModuleType"/>
+        <programRunner implementation="st.redline.smalltalk.execution.RsRunner"/>
+        <configurationType implementation="st.redline.smalltalk.execution.RsRunConfigurationType"/>
+        <configurationProducer implementation="st.redline.smalltalk.execution.RsRunConfigurationProducer"/>
+        <internalFileTemplate name="Smalltalk Class"/>
+        <internalFileTemplate name="Smalltalk Message"/>
+        <fileTypeFactory implementation="st.redline.smalltalk.SmalltalkLanguageFileTypeFactory"/>
+        <syntaxHighlighter key="Smalltalk" implementationClass="st.redline.smalltalk.highlighter.SmalltalkSyntaxHighlighter"/>
+        <framework.type implementation="st.redline.smalltalk.module.RsFrameworkType"/>
+        <facetType implementation="st.redline.smalltalk.module.facet.RsFacetType"/>
+        <projectStructureDetector implementation="st.redline.smalltalk.module.RsProjectStructureDetector"/>
+    </extensions>
+
+  <actions>
+      <action id="Smalltalk.NewFile" class="st.redline.smalltalk.actions.NewSmalltalkFileAction"
+              text="Smalltalk File" description="Create new Smalltalk file">
+          <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
+      </action>
+
+  </actions>
+</idea-plugin>

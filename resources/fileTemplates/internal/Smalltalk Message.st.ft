@@ -1,0 +1,1 @@
+[ :msg | Transcript show: msg; cr ] value: 'Hello ${NAME}!'.

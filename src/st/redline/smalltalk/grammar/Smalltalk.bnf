@@ -1,0 +1,42 @@
+{
+  parserClass="st.redline.smalltalk.parser.SmalltalkParser"
+
+  implements="st.redline.smalltalk.psi.SmalltalkPsiElement"
+  extends="st.redline.smalltalk.psi.impl.SmalltalkPsiElementImpl"
+
+  psiClassPrefix="Smalltalk"
+  psiImplClassSuffix="Impl"
+  psiPackage="st.redline.smalltalk.psi"
+  psiImplPackage="st.redline.smalltalk.psi.impl"
+
+  elementTypeHolderClass="st.redline.smalltalk.psi.SmalltalkTypes"
+  elementTypePrefix="ST_"
+  elementTypeClass="st.redline.smalltalk.psi.SmalltalkPsiElementType"
+  tokenTypeClass="st.redline.smalltalk.psi.SmalltalkTokenType"
+  
+
+  // make class hierarchy nice and AST tree short
+  extends(".*expression")="expression"
+  // make expressions stable enough
+  pin(".*expression")=1
+
+  // tokens beyond id, number and string
+  ADD='+'
+  MUL='*'
+  DOT='.'
+}
+root ::= expression *
+private recover ::= !(number | string | id)
+
+expression ::= factor add_expression * {recoverUntil="recover"}
+private factor ::= primary mul_expression *
+private primary ::= literal_expression | reference_expression qreference_expression *
+
+left add_expression ::= '+' factor
+left mul_expression ::= '*' primary
+
+identifier ::= id
+reference_expression ::= identifier
+left qreference_expression ::= '.' identifier {elementType="reference_expression"}
+
+literal_expression ::= number | string
