@@ -38,18 +38,25 @@
   </project-components>
 
     <extensions defaultExtensionNs="com.intellij">
+        <!-- Module configuration and project detector -->
         <sdkType implementation="st.redline.smalltalk.module.RsSdkType"/>
         <moduleType id="REDLINE_MODULE" implementationClass="st.redline.smalltalk.module.RsModuleType"/>
-        <programRunner implementation="st.redline.smalltalk.execution.RsRunner"/>
-        <configurationType implementation="st.redline.smalltalk.execution.RsRunConfigurationType"/>
-        <configurationProducer implementation="st.redline.smalltalk.execution.RsRunConfigurationProducer"/>
-        <internalFileTemplate name="Smalltalk Class"/>
-        <internalFileTemplate name="Smalltalk Message"/>
-        <fileTypeFactory implementation="st.redline.smalltalk.SmalltalkLanguageFileTypeFactory"/>
-        <syntaxHighlighter key="Smalltalk" implementationClass="st.redline.smalltalk.highlighter.SmalltalkSyntaxHighlighter"/>
         <framework.type implementation="st.redline.smalltalk.module.RsFrameworkType"/>
         <facetType implementation="st.redline.smalltalk.module.facet.RsFacetType"/>
         <projectStructureDetector implementation="st.redline.smalltalk.module.RsProjectStructureDetector"/>
+
+        <!-- Run configurations -->
+        <programRunner implementation="st.redline.smalltalk.execution.RsRunner"/>
+        <configurationType implementation="st.redline.smalltalk.execution.RsRunConfigurationType"/>
+        <configurationProducer implementation="st.redline.smalltalk.execution.RsRunConfigurationProducer"/>
+
+        <!--File type support-->
+        <internalFileTemplate name="Smalltalk Class"/>
+        <internalFileTemplate name="Smalltalk Message"/>
+        <fileTypeFactory implementation="st.redline.smalltalk.SmalltalkLanguageFileTypeFactory"/>
+        
+        <!-- Lang specific -->
+        <syntaxHighlighter key="Smalltalk" implementationClass="st.redline.smalltalk.highlighter.SmalltalkSyntaxHighlighter"/>
     </extensions>
 
   <actions>
